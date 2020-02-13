@@ -267,6 +267,30 @@
 		"oAP": "/html/com_content/category/_blog_item.php",
 		"oF": 0
 		},
+	"/html/com_eventbooking/category/columns.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/html/com_eventbooking/category/columns.php",
+		"oF": 0
+		},
+	"/html/com_eventbooking/common/events_columns.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/html/com_eventbooking/common/events_columns.php",
+		"oF": 0
+		},
+	"/html/com_eventbooking/event/default.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/html/com_eventbooking/event/default.php",
+		"oF": 0
+		},
 	"/html/com_fabrik/form/bootstrap/default.php": {
 		"cB": 0,
 		"ft": 8192,
