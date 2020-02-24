@@ -15,7 +15,7 @@ $bootstrapHelper = EventbookingHelperBootstrap::getInstance();
 $clearfixClass   = $bootstrapHelper->getClassMapping('clearfix');
 ?>
 
-<div id="eb-category-page-columns" class="eb-container">
+<div id="eb-category-page-columns">
 	<div class="container">
 
 		<?php
@@ -117,6 +117,6 @@ $clearfixClass   = $bootstrapHelper->getClassMapping('clearfix');
 				}
 			</script>
 		</form>
-		
+
 	</div>
 </div>

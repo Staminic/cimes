@@ -28,11 +28,11 @@ $btnPrimaryClass   = $bootstrapHelper->getClassMapping('btn-primary');
 
 $linkThumbToEvent   = $config->get('link_thumb_to_event_detail_page', 1);
 
-$numberColumns = JFactory::getApplication()->getParams()->get('number_columns', 2);
+$numberColumns = JFactory::getApplication()->getParams()->get('number_columns', 3);
 
 if (!$numberColumns)
 {
-	$numberColumns = 2;
+	$numberColumns = 3;
 }
 
 $baseUri      = JUri::base(true);
@@ -60,58 +60,14 @@ EventbookingHelperData::prepareDisplayData($events, $activeCategoryId, $config, 
 			$count++;
 			$event = $events[$i];
 		?>
-			<div class="<?php echo $span; ?> col-md-6 eb-category-<?php echo $event->category_id; ?><?php if ($event->featured) echo ' eb-featured-event'; ?> eb-event-box eb-event-<?php echo $event->id; ?> clearfix">
-				<div class="card">
-					<?php
-					if (!empty($event->thumb_url))
-					{
-						if ($linkThumbToEvent)
-						{
-						?>
-							<a href="<?php echo $event->url; ?>"><img src="<?php echo $event->thumb_url; ?>" class="card-img-top" alt="<?php echo $event->title; ?>"/></a>
-						<?php
-						}
-						else
-						{
-						?>
-							<div class="<?php echo $clearfixClass; ?>">
-									<a href="<?php echo $event->image_url; ?>" class="eb-modal"><img src="<?php echo $event->thumb_url; ?>" class="eb-thumb-left" alt="<?php echo $event->title; ?>"/></a>
-							</div>
-						<?php
-						}
-					}
-					?>
-
-					<div class="card-body">
-						<h2 class="card-title">
-							<?php
-							if ($config->hide_detail_button !== '1')
-							{
-							?>
-								<a class="eb-event-title" href="<?php echo $event->url; ?>"><?php echo $event->title; ?></a>
-							<?php
-							}
-							else
-							{
-								echo $event->title;
-							}
-							?>
-						</h2>
-
-						<?php
-								$categories = [];
-								foreach ($event->categories as $category)
-								{
-									$categories[] = $category->name;
-								}
-								echo '<h3>' . implode(',' , $categories) . '</h3>';
-						?>
-
+			<div class="<?php echo $span; ?> col-md-6 d-flex eb-category-<?php echo $event->category_id; ?><?php if ($event->featured) echo ' eb-featured-event'; ?> eb-event-box eb-event-<?php echo $event->id; ?> clearfix">
+				<a class="w-100 card mb-4" href="<?php echo $event->url; ?>">
+					<div class="card-thumbnail" style="background-image: url('<?php echo $event->thumb_url; ?>');">
 						<div class="eb-event-date-time <?php echo $clearfixClass; ?>">
 							<?php
 							if ($event->event_date != EB_TBC_DATE)
 							{
-								echo JHtml::_('date', $event->event_date, 'd', null) . '<br/><span class="small">' . JHtml::_('date', $event->event_date, 'F', null) . '</span>';
+								echo JHtml::_('date', $event->event_date, 'd', null) . '<span class="small">' . JHtml::_('date', $event->event_date, 'F', null) . '</span>';
 							}
 							else
 							{
@@ -120,7 +76,25 @@ EventbookingHelperData::prepareDisplayData($events, $activeCategoryId, $config, 
 							?>
 						</div>
 
-						<div class="eb-event-location-price <?php echo $rowFluidClass . ' ' . $clearfixClass; ?>">
+						<?php
+							$categories = [];
+							foreach ($event->categories as $category)
+							{
+								$categories[] = $category->name;
+							}
+							// echo '<h4 class="h3">' . implode(',' , $categories) . '</h4>';
+							echo '<h4 class="h3 event-category ' . strtolower($category->name) . '">' . $category->name . '</h4>';
+						?>
+					</div>
+
+					<div class="card-body">
+						<h3 class="card-title">
+							<?php
+								echo $event->title;
+							?>
+						</h3>
+
+						<div class="eb-event-location-price">
 							<?php
 							if ($event->location_id)
 							{
@@ -173,21 +147,23 @@ EventbookingHelperData::prepareDisplayData($events, $activeCategoryId, $config, 
 							if ($priceDisplay)
 							{
 							?>
-								<div class="eb-event-price <?php echo $btnPrimaryClass . ' ' . $bootstrapHelper->getClassMapping('span3'); ?> pull-right">
-									<span class="eb-individual-price"><?php echo $priceDisplay; ?></span>
+								<div class="eb-event-price">
+									<span class="eb-individual-price badge badge-primary"><?php echo $priceDisplay; ?></span>
 								</div>
 							<?php
 							}
 							?>
 						</div>
 
-						<div class="eb-event-short-description <?php echo $clearfixClass; ?>">
-							<?php echo $event->short_description; ?>
-						</div>
+						<?php if ($event->short_description) : ?>
+							<div class="eb-event-short-description <?php echo $clearfixClass; ?>">
+								<?php echo $event->short_description; ?>
+							</div>
+						<?php endif; ?>
 
 						<?php
 						    // Event message to tell user that they already registered, need to login to register or don't have permission to register...
-						    echo EventbookingHelperHtml::loadCommonLayout('common/event_message.php', array('config' => $config, 'event' => $event));
+						    // echo EventbookingHelperHtml::loadCommonLayout('common/event_message.php', array('config' => $config, 'event' => $event));
 						?>
 					</div>
 
@@ -287,9 +263,9 @@ EventbookingHelperData::prepareDisplayData($events, $activeCategoryId, $config, 
 								{
 								?>
 									<li>
-										<a class="<?php echo $btnClass . ' ' . $btnPrimaryClass; ?>" href="<?php echo $event->url; ?>">
+										<span class="btn btn-outline-primary">
 											<?php echo $event->is_multiple_date ? JText::_('EB_CHOOSE_DATE_LOCATION') : JText::_('EB_DETAILS');?>
-										</a>
+										</span>
 									</li>
 								<?php
 								}
@@ -297,18 +273,11 @@ EventbookingHelperData::prepareDisplayData($events, $activeCategoryId, $config, 
 							</ul>
 						</div>
 					</div>
-				</div>
+				</a>
 
 			</div>
 
 		<?php
-			if ($count % $numberColumns == 0 && $count < $numberEvents)
-			{
-			?>
-				</div>
-				<div class="<?php echo $rowFluidClass . ' ' . $clearfixClass; ?>">
-			<?php
-			}
 		}
 	?>
 </div>

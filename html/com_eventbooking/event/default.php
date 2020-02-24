@@ -64,32 +64,33 @@ if (!$this->config->get('show_group_rates', 1))
 }
 ?>
 
-<div class="container">
-	<?php if (!$item->can_register) : ?>
-		<p>plus d'inscription possible</p>
-	<?php endif; ?>
+	<div id="eb-event-page" class="eb-category-<?php echo $item->category_id; ?> eb-event<?php if ($item->featured) echo ' eb-featured-event'; ?>">
 
-	<div id="eb-event-page" class="eb-container eb-category-<?php echo $item->category_id; ?> eb-event<?php if ($item->featured) echo ' eb-featured-event'; ?>">
-		<div class="eb-box-heading <?php echo $clearfixClass; ?>">
-			<h1 class="eb-page-heading">
-				<?php
-				echo $item->title;
+		<div class="hero">
+			<?php if ($this->config->get('show_image_in_event_detail', 1) && $this->config->display_large_image && !empty($item->image_url)) : ?>
+				<div class="item-img-fullwidth" style="background-image: url('<?php echo $item->image_url; ?>');">
+					<div class="overlay"></div>
 
-				if ($this->config->get('show_print_button', '1') === '1' && !$this->print)
-				{
-					$uri = clone JUri::getInstance();
-					$uri->setVar('tmpl', 'component');
-					$uri->setVar('print', '1');
-				?>
-					<div id="pop-print" class="btn hidden-print">
-						<a href="<?php echo $uri->toString();?> " rel="nofollow" target="_blank">
-	                        <span class="<?php echo $iconPrint; ?>"></span>
-						</a>
+					<div class="container d-flex flex-column">
+						<div class="page-header">
+							<h1 itemprop="headline">
+								<?php
+									$categories = [];
+									foreach ($item->categories as $category)
+									{
+										$categories[] = $category->name;
+									}
+									// echo '<h4 class="h3">' . implode(',' , $categories) . '</h4>';
+									echo '<p class="small">' . $category->name . '</p>';
+								?>
+
+								<?php echo $item->title; ?>
+							</h1>
+						</div>
 					</div>
-				<?php
-				}
-				?>
-			</h1>
+
+				</div>
+			<?php endif; ?>
 		</div>
 
 		<div>
@@ -112,73 +113,55 @@ if (!$this->config->get('show_group_rates', 1))
 				}
 			?>
 
+		<div class="container">
 			<div class="eb-description-details <?php echo $clearfixClass; ?>">
-				<?php
-					if ($this->config->get('show_image_in_event_detail', 1) && $this->config->display_large_image && !empty($item->image_url))
-					{
-					?>
-						<img src="<?php echo $item->image_url; ?>" class="eb-event-large-image img-polaroid"/>
+				<div id="eb-event-info" class="card text-white bg-primary float-md-right ml-md-5 mb-3 mb-md-0">
 					<?php
-					}
-					elseif ($this->config->get('show_image_in_event_detail', 1) && !empty($item->thumb_url))
-					{
-					?>
-						<a href="<?php echo $item->image_url; ?>" class="eb-modal"><img src="<?php echo $item->thumb_url; ?>" class="eb-thumb-left" alt="<?php echo $item->title; ?>"/></a>
-					<?php
-					}
+						if (!empty($this->items))
+						{
+							echo EventbookingHelperHtml::loadCommonLayout('common/events_children.php', array('items' => $this->items, 'config' => $this->config, 'Itemid' => $this->Itemid, 'nullDate' => $this->nullDate, 'ssl' => (int) $this->config->use_https, 'viewLevels' => $this->viewLevels, 'categoryId' => $this->item->category_id, 'bootstrapHelper' => $this->bootstrapHelper));
+						}
+						else
+						{
+						$leftCssClass = 'span8';
 
+							if (empty($this->rowGroupRates))
+							{
+								$leftCssClass = 'span12';
+							}
+						?>
+
+						<div id="eb-event-info-left" class="<?php echo $bootstrapHelper->getClassMapping($leftCssClass); ?>">
+							<?php
+							$layoutData = array(
+								'item'           => $this->item,
+								'config'         => $this->config,
+								'location'       => $item->location,
+								'showLocation'   => true,
+								'isMultipleDate' => false,
+								'nullDate'       => $this->nullDate,
+								'Itemid'         => $this->Itemid,
+							);
+
+							echo EventbookingHelperHtml::loadCommonLayout('common/event_properties-cimes.php', $layoutData);
+							?>
+						</div>
+
+					<?php
+						if (count($this->rowGroupRates))
+						{
+							echo $this->loadTemplate('group_rates');
+						}
+					}
+					?>
+				</div>
+
+				<?php
 					echo $item->description;
 				?>
 			</div>
 
-	    <div id="eb-event-info" class="<?php echo $clearfixClass . ' ' . $bootstrapHelper->getClassMapping('row-fluid'); ?>">
-				<?php
-				if (!empty($this->items))
-				{
-					echo EventbookingHelperHtml::loadCommonLayout('common/events_children.php', array('items' => $this->items, 'config' => $this->config, 'Itemid' => $this->Itemid, 'nullDate' => $this->nullDate, 'ssl' => (int) $this->config->use_https, 'viewLevels' => $this->viewLevels, 'categoryId' => $this->item->category_id, 'bootstrapHelper' => $this->bootstrapHelper));
-				}
-				else
-				{
-					$leftCssClass = 'span8';
-
-					if (empty($this->rowGroupRates))
-					{
-						$leftCssClass = 'span12';
-					}
-				?>
-
-					<div id="eb-event-info-left" class="<?php echo $bootstrapHelper->getClassMapping($leftCssClass); ?>">
-						<h3 id="eb-event-properties-heading">
-							<?php echo JText::_('EB_EVENT_PROPERTIES'); ?>
-						</h3>
-						<?php
-						$layoutData = array(
-							'item'           => $this->item,
-							'config'         => $this->config,
-							'location'       => $item->location,
-							'showLocation'   => true,
-							'isMultipleDate' => false,
-							'nullDate'       => $this->nullDate,
-							'Itemid'         => $this->Itemid,
-						);
-
-						echo EventbookingHelperHtml::loadCommonLayout('common/event_properties.php', $layoutData);
-						?>
-					</div>
-
-					<?php
-					if (count($this->rowGroupRates))
-					{
-						echo $this->loadTemplate('group_rates');
-					}
-				}
-				?>
-			</div>
-
-			<div class="<?php echo $clearfixClass; ?>"></div>
-
 			<?php
-
 			if ($this->config->show_location_info_in_event_details && $item->location && ($item->location->image || EventbookingHelper::isValidMessage($item->location->description)))
 			{
 				echo $this->loadTemplate('location', array('location' => $item->location));
@@ -223,7 +206,7 @@ if (!$this->config->get('show_group_rates', 1))
 					$msg = JText::_('EB_NO_LONGER_ACCEPT_REGISTRATION');
 				}
 			?>
-		        <div class="text-info eb-notice-message"><?php echo $msg; ?></div>
+		        <div class="text-info text-center"><p class="small font-weight-bold"><?php echo $msg; ?></p></div>
 			<?php
 			}
 
