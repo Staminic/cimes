@@ -156,9 +156,8 @@ $layoutData = array(
 		{
 			$showPaymentInformation = true;
 			$showTaxAmount          = ($this->event->tax_rate > 0);
-
 		?>
-			<h3 class="eb-heading"><?php echo JText::_('EB_PAYMENT_INFORMATION'); ?></h3>
+
 		<?php
         foreach ($fields as $field)
         {
@@ -244,8 +243,8 @@ $layoutData = array(
 		$buttonText = JText::_('EB_PROCESS_REGISTRATION');
 	}
 	?>
-		<div class="form-actions">
-			<input type="button" class="<?php echo $btnPrimary; ?>" name="btnBack" value="<?php echo  JText::_('EB_BACK') ;?>" onclick="window.history.go(-1);" />
+		<div class="form-actions d-flex justify-content-end">
+			<!--<input type="button" class="<?php // echo $btnPrimary; ?>" name="btnBack" value="<?php // echo  JText::_('EB_BACK') ;?>" onclick="window.history.go(-1);" />-->
 			<input type="submit" class="<?php echo $btnPrimary; ?>" name="btn-submit" id="btn-submit" value="<?php echo $buttonText;?>" />
 			<img id="ajax-loading-animation" src="<?php echo JUri::base(true);?>/media/com_eventbooking/ajax-loadding-animation.gif" style="display: none;"/>
 		</div>

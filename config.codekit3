@@ -291,6 +291,14 @@
 		"oAP": "/html/com_eventbooking/common/events_columns.php",
 		"oF": 0
 		},
+	"/html/com_eventbooking/complete/default.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/html/com_eventbooking/complete/default.php",
+		"oF": 0
+		},
 	"/html/com_eventbooking/event/default.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -299,12 +307,28 @@
 		"oAP": "/html/com_eventbooking/event/default.php",
 		"oF": 0
 		},
+	"/html/com_eventbooking/fieldlayout/controlgroup.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/html/com_eventbooking/fieldlayout/controlgroup.php",
+		"oF": 0
+		},
 	"/html/com_eventbooking/register/default.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/html/com_eventbooking/register/default.php",
+		"oF": 0
+		},
+	"/html/com_eventbooking/register/register_payment_amount.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/html/com_eventbooking/register/register_payment_amount.php",
 		"oF": 0
 		},
 	"/html/com_fabrik/form/bootstrap/default.php": {
@@ -731,6 +755,14 @@
 		"oAP": "/html/mod_custom/naked.php",
 		"oF": 0
 		},
+	"/html/mod_eb_events/horizontal.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/html/mod_eb_events/horizontal.php",
+		"oF": 0
+		},
 	"/html/mod_finder/default.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -800,6 +832,17 @@
 		"oIPL": 0,
 		"opt": 0,
 		"oT": 1,
+		"q": 100
+		},
+	"/images/ville.jpg": {
+		"ft": 16384,
+		"iS": 761182,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/images/ville.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
 		"q": 100
 		},
 	"/images/webcam-picto-white.svg": {

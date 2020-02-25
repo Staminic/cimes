@@ -210,19 +210,6 @@ if (!$this->config->get('show_group_rates', 1))
 			<?php
 			}
 
-			if ($this->showTaskBar && in_array($this->config->get('register_buttons_position', 0), array(0,2)))
-			{
-			?>
-
-			<div class="eb-taskbar eb-register-buttons-bottom <?php echo $clearfixClass; ?>">
-				<ul>
-					<?php echo $registerButtons; ?>
-				</ul>
-			</div>
-
-			<?php
-			}
-
 			if (count($this->plugins))
 			{
 				echo $this->loadTemplate('plugins');
