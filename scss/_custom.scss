@@ -409,6 +409,19 @@ body {
   }
 }
 
+.picto__agenda {
+  > a {
+    > span {
+      &::before {
+        content: url("../images/calendar-picto-white.svg");
+        display: inline-block;
+        width: 15px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
 // Brand
 
 .navbar-brand {
@@ -765,6 +778,16 @@ section.events {
 
     &::after {
       background-color: transparent;
+    }
+
+    span {
+      display: inline-block;
+      line-height: 0;
+      vertical-align: 5px;
+
+      img {
+        margin-right: .5rem;
+      }
     }
   }
 
