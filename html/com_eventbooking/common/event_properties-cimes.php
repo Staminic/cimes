@@ -37,7 +37,7 @@ $timeFormat = $config->event_time_format;
 			$categories[] = $category->name;
 		}
 		// echo '<h4 class="h3">' . implode(',' , $categories) . '</h4>';
-		echo '<h4 class="eb-event-category ' . strtolower($category->name) . '">' . '<span>' . $category->name . '</span>' . '</h4>';
+		echo '<h4 class="eb-event-category card-event-catid-' . $category->id . '">' . '<span>' . $category->name . '</span>' . '</h4>';
 	?>
 
 	<div class="eb-event-date-time">

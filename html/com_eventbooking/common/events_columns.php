@@ -60,21 +60,32 @@ EventbookingHelperData::prepareDisplayData($events, $activeCategoryId, $config, 
 			$count++;
 			$event = $events[$i];
 		?>
-			<div class="<?php echo $span; ?> col-md-6 d-flex eb-category-<?php echo $event->category_id; ?><?php if ($event->featured) echo ' eb-featured-event'; ?> eb-event-box eb-event-<?php echo $event->id; ?> clearfix">
-				<a class="w-100 card mb-4" href="<?php echo $event->url; ?>">
+			<div class="<?php echo(($event->category_id == '3') ? 'col-lg-6' : $span ); ?> col-md-6 d-flex eb-category-<?php echo $event->category_id; ?><?php if ($event->featured) echo ' eb-featured-event'; ?> eb-event-box eb-event-<?php echo $event->id; ?> clearfix card-event-catid-<?php echo $category->id; ?>" <?php echo(($event->category_id == '3') ? 'style="margin: 0 auto;"' : '' ); ?>>
+				<div class="eb-event-date-time <?php echo $clearfixClass; ?>">
+					<?php
+					if ($event->event_date != EB_TBC_DATE)
+					{
+						echo JHtml::_('date', $event->event_date, 'd', null) . '<span class="small">' . JHtml::_('date', $event->event_date, 'F', null) . '</span>';
+					}
+					else
+					{
+						echo JText::_('EB_TBC');
+					}
+					?>
+				</div>
+
+				<?php if($category->id == '3') : // n'appartient pas à la catégorie Événements ?>
+					<div class="ribbon">
+						<span>Save the date</span>
+					</div>
+				<?php endif; ?>
+
+				<a class="w-100 card" href="<?php echo $event->url; ?>" <?php echo (($category->id == '3' ) ? 'style="background-image: url(' . $event->image . ');"' : ''); // backgound-image des événements ?>>
+					<?php if($category->id !== '3') : // n'appartient pas à la catégorie Événements ?>
 					<div class="card-thumbnail" style="background-image: url('<?php echo $event->thumb_url; ?>');">
-						<div class="eb-event-date-time <?php echo $clearfixClass; ?>">
-							<?php
-							if ($event->event_date != EB_TBC_DATE)
-							{
-								echo JHtml::_('date', $event->event_date, 'd', null) . '<span class="small">' . JHtml::_('date', $event->event_date, 'F', null) . '</span>';
-							}
-							else
-							{
-								echo JText::_('EB_TBC');
-							}
-							?>
-						</div>
+					<?php else : ?>
+					<div class="card-thumbnail">
+					<?php endif; ?>
 
 						<?php
 							$categories = [];
@@ -82,8 +93,9 @@ EventbookingHelperData::prepareDisplayData($events, $activeCategoryId, $config, 
 							{
 								$categories[] = $category->name;
 							}
+
 							// echo '<h4 class="h3">' . implode(',' , $categories) . '</h4>';
-							echo '<h4 class="h3 event-category ' . strtolower($category->name) . '">' . $category->name . '</h4>';
+							echo '<h4 class="h3 event-category">' . $category->name . '</h4>';
 						?>
 					</div>
 
@@ -147,9 +159,11 @@ EventbookingHelperData::prepareDisplayData($events, $activeCategoryId, $config, 
 							if ($priceDisplay)
 							{
 							?>
-								<div class="eb-event-price">
-									<span class="eb-individual-price badge badge-primary"><?php echo $priceDisplay; ?></span>
-								</div>
+								<?php if($category->id !== '3') : // n'appartient pas à la catégorie Événements ?>
+									<div class="eb-event-price">
+										<span class="eb-individual-price badge badge-primary"><?php echo $priceDisplay; ?></span>
+									</div>
+								<?php endif; ?>
 							<?php
 							}
 							?>

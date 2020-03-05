@@ -201,10 +201,10 @@ if (!$this->config->get('show_group_rates', 1))
 						$msg       = str_replace('[LOGIN_LINK]', $loginLink, JText::_('EB_LOGIN_TO_REGISTER'));
 					}
 				}
-				else
-				{
-					$msg = JText::_('EB_NO_LONGER_ACCEPT_REGISTRATION');
-				}
+				// else
+				// {
+				// 	$msg = JText::_('EB_NO_LONGER_ACCEPT_REGISTRATION');
+				// }
 			?>
 		        <div class="text-info text-center"><p class="small font-weight-bold"><?php echo $msg; ?></p></div>
 			<?php

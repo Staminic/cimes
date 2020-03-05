@@ -34,11 +34,12 @@ if ($numberEvents > 0)
 
         for ($i = 0, $n = count($rows) ; $i < $n; $i++)
         {
-            $event = $rows[$i];
-	          $count++;
-            $date = JHtml::_('date', $event->event_date, 'd', null);
-            $month = JHtml::_('date', $event->event_date, 'n', null);
-            $eventDate =  JHtml::_('date', $event->event_date, 'h:i A') .' to '. JHtml::_('date', $event->event_end_date, 'h:i A');
+          // print_r($event);
+          $event = $rows[$i];
+          $count++;
+          $date = JHtml::_('date', $event->event_date, 'd', null);
+          $month = JHtml::_('date', $event->event_date, 'n', null);
+          $eventDate =  JHtml::_('date', $event->event_date, 'h:i A') .' to '. JHtml::_('date', $event->event_end_date, 'h:i A');
 
 	        if ($linkToRegistrationForm && EventbookingHelperRegistration::acceptRegistration($event))
 	        {
@@ -57,35 +58,33 @@ if ($numberEvents > 0)
 	        }
 			    ?>
 
-          <div class="up-event-item <?php echo $span; ?> col-md-6 d-flex eb-event-box">
-            <a class="w-100 card mb-4" href="<?php echo $detailUrl; ?>">
+          <div class="up-event-item <?php echo $span; ?> col-md-6 d-flex eb-event-box card-event-catid-<?php echo $event->category->id; ?>">
+            <div class="eb-event-date-time clearfix">
+              <?php
+              if ($event->event_date != EB_TBC_DATE)
+              {
+                echo JHtml::_('date', $event->event_date, 'd', null) . '<span class="small">' . JHtml::_('date', $event->event_date, 'F', null) . '</span>';
+              }
+              else
+              {
+                echo JText::_('EB_TBC');
+              }
+              ?>
+            </div>
+
+            <a class="w-100 card" href="<?php echo $detailUrl; ?>" <?php echo (($event->category->id == '3' ) ? 'style="background-image: url(' . $event->image . ');"' : ''); // backgound-image des événements ?>>
               <?php
               if ($showThumb && $event->thumb && file_exists(JPATH_ROOT . '/media/com_eventbooking/images/thumbs/' . $event->thumb))
               {
               ?>
+                <?php if($event->category->id !== '3') : // n'appartient pas à la catégorie Événements ?>
                 <div class="card-thumbnail" style="background-image: url('<?php echo $baseUri . '/media/com_eventbooking/images/thumbs/' . $event->thumb; ?>');">
-                  <div class="eb-event-date-time clearfix">
-                    <?php
-      							if ($event->event_date != EB_TBC_DATE)
-      							{
-      								echo JHtml::_('date', $event->event_date, 'd', null) . '<span class="small">' . JHtml::_('date', $event->event_date, 'F', null) . '</span>';
-      							}
-      							else
-      							{
-      								echo JText::_('EB_TBC');
-      							}
-      							?>
-          				</div>
+                <?php else : ?>
+                <div class="card-thumbnail">
+                <?php endif; ?>
 
                   <?php if ($showCategory) : ?>
-                    <?php
-                      $categories = [];
-        							foreach ($event->categories as $category)
-        							{
-        								$categories[] = $category->name;
-        							}
-        							echo '<h4 class="h3 event-category ' . strtolower($category->name) . '">' . $category->name . '</h4>';
-      						  ?>
+                    <h4 class="h3 event-category"><?php echo $event->category->name; ?></h4>
                   <?php endif; ?>
 
                 </div>
@@ -142,9 +141,13 @@ if ($numberEvents > 0)
         					if ($priceDisplay && $showPrice)
         					{
         					?>
-        						<div class="eb-event-price">
-        							<span class="eb-individual-price badge badge-primary"><?php echo $priceDisplay; ?></span>
-        						</div>
+
+                    <?php if($event->category->id !== '3') : // n'appartient pas à la catégorie Événements ?>
+          						<div class="eb-event-price">
+          							<span class="eb-individual-price badge badge-primary"><?php echo $priceDisplay; ?></span>
+          						</div>
+                    <?php endif; ?>
+
         					<?php
         					}
         					?>
