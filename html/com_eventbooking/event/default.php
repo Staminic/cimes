@@ -65,7 +65,6 @@ if (!$this->config->get('show_group_rates', 1))
 ?>
 
 	<div id="eb-event-page" class="eb-category-<?php echo $item->category_id; ?> eb-event<?php if ($item->featured) echo ' eb-featured-event'; ?>">
-
 		<div class="hero">
 			<?php if ($this->config->get('show_image_in_event_detail', 1) && $this->config->display_large_image && !empty($item->image_url)) : ?>
 				<div class="item-img-fullwidth" style="background-image: url('<?php echo $item->image_url; ?>');">

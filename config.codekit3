@@ -299,12 +299,12 @@
 		"oAP": "/html/com_eventbooking/complete/default.php",
 		"oF": 0
 		},
-	"/html/com_eventbooking/event/_default.php": {
+	"/html/com_eventbooking/event/default.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/html/com_eventbooking/event/_default.php",
+		"oAP": "/html/com_eventbooking/event/default.php",
 		"oF": 0
 		},
 	"/html/com_eventbooking/fieldlayout/controlgroup.php": {

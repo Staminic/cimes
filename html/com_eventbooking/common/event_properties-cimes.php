@@ -29,7 +29,6 @@ $timeFormat = $config->event_time_format;
 ?>
 
 <div class="card-body">
-
 	<?php // Category
 		$categories = [];
 		foreach ($item->categories as $category)
@@ -48,51 +47,33 @@ $timeFormat = $config->event_time_format;
 		}
 		else
 		{
-			echo '<span class="eb-date h1">' . JHtml::_('date', $item->event_date, 'd F Y', null) . '</span>';
+			$startDate =  JHtml::_('date', $item->event_date, 'Y-m-d', null);
+			$endDate   = JHtml::_('date', $item->event_end_date, 'Y-m-d', null);
+			$startDateMounth =  JHtml::_('date', $item->event_date, 'm', null);
+			$endDateMounth   = JHtml::_('date', $item->event_end_date, 'm', null);
+			$startDateYear =  JHtml::_('date', $item->event_date, 'Y', null);
+			$endDateYear   = JHtml::_('date', $item->event_end_date, 'Y', null);
 
-			if (strpos($item->event_date, '00:00:00') === false)
-			{
-			?>
-				<?php echo '<span class="eb-time h3">' . JHtml::_('date', $item->event_date, $timeFormat, null) ?>
-			<?php
+			if ($startDate == $endDate) {
+				echo '<span class="eb-date h1">' . JHtml::_('date', $item->event_date, 'd F Y', null) . '</span>';
+				echo '<span class="eb-time h3">' . JHtml::_('date', $item->event_date, $timeFormat, null) . ' - ' . JHtml::_('date', $item->event_end_date, $timeFormat, null);
 			}
-
-			if ($item->event_end_date != $nullDate)
-			{
-				if (strpos($item->event_end_date, '00:00:00') === false)
-				{
-					$showTime = true;
-				}
-				else
-				{
-					$showTime = false;
-				}
-
-				$startDate =  JHtml::_('date', $item->event_date, 'Y-m-d', null);
-				$endDate   = JHtml::_('date', $item->event_end_date, 'Y-m-d', null);
-
-				if ($startDate == $endDate)
-				{
-					if ($showTime)
-					{
-					?>
-						- <?php echo JHtml::_('date', $item->event_end_date, $timeFormat, null) . '</span>' ?>
-					<?php
+			else {
+				if ($startDateYear == $endDateYear) {
+					if ($startDateMounth == $endDateMounth) {
+						echo '<span class="eb-date h1">' . JHtml::_('date', $item->event_date, 'd', null) . ' - ' . JHtml::_('date', $item->event_end_date, 'd', null) . ' ' . JHtml::_('date', $item->event_date, 'F Y', null) . '</span>';
+					} else {
+						echo '<span class="eb-date h1">' . JHtml::_('date', $item->event_date, 'd F', null) . ' - ' . JHtml::_('date', $item->event_end_date, 'd F', null) . ' ' . JHtml::_('date', $item->event_date, 'Y', null) . '</span>';
 					}
+				} else {
+					echo '<span class="eb-date h1">' . JHtml::_('date', $item->event_date, 'd F Y', null) . '</span>';
+					echo '<span class="eb-date h1">' . JHtml::_('date', $item->event_end_date, 'd F Y', null) . '</span>';
 				}
-				else
-				{
-					echo " - " .JHtml::_('date', $item->event_end_date, $dateFormat, null);
-
-					if ($showTime)
-					{
-					?>
-						<span class="eb-time"><?php echo JHtml::_('date', $item->event_end_date, $timeFormat, null) ?></span>
-					<?php
-					}
-				}
+				echo '<span class="eb-time h3">' . JHtml::_('date', $item->event_date, $timeFormat, null) . ' - ' . JHtml::_('date', $item->event_end_date, $timeFormat, null);
 			}
 		}
+
+
 		?>
 	</div>
 
@@ -104,7 +85,11 @@ $timeFormat = $config->event_time_format;
 		}
 		else
 		{
-			echo '<span class="eb_free h3">' . JText::_('EB_FREE') . '</span>';
+			if ($item->price_text) {
+				echo '<span class="h3">' . $item->price_text . '</span>';
+			} else {
+				echo '<span class="eb_free h3">' . JText::_('EB_FREE') . '</span>';
+			}
 		}
 		?>
 	</div>
