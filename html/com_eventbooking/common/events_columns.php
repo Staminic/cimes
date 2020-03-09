@@ -60,7 +60,7 @@ EventbookingHelperData::prepareDisplayData($events, $activeCategoryId, $config, 
 			$count++;
 			$event = $events[$i];
 		?>
-			<div class="<?php echo(($event->category_id == '3') ? 'col-lg-6' : $span ); ?> col-md-6 d-flex eb-category-<?php echo $event->category_id; ?><?php if ($event->featured) echo ' eb-featured-event'; ?> eb-event-box eb-event-<?php echo $event->id; ?> clearfix card-event-catid-<?php echo $category->id; ?>" <?php echo(($event->category_id == '3') ? 'style="margin: 0 auto;"' : '' ); ?>>
+			<div class="<?php echo(($event->category_id == '3') ? 'col-lg-6' : $span ); ?> col-md-6 d-flex eb-category-<?php echo $event->category_id; ?><?php if ($event->featured) echo ' eb-featured-event'; ?> eb-event-box eb-event-<?php echo $event->id; ?> clearfix card-event-catid-<?php echo $category->id; ?> mb-4" <?php echo(($event->category_id == '3') ? 'style="margin: 0 auto;"' : '' ); ?>>
 				<div class="eb-event-date-time <?php echo $clearfixClass; ?>">
 					<?php
 					if ($event->event_date != EB_TBC_DATE)

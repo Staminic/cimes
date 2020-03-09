@@ -96,7 +96,7 @@ $timeFormat = $config->event_time_format;
 
 	<div class="eb-event-action">
 		<?php if (!$item->can_register) : ?>
-			<p>Session terminée</p>
+			<p>Inscription fermée pour le moment</p>
 		<?php else : ?>
 			<a href="#eb-individual-registration-page" class="btn btn-lg">Inscrivez-vous</a>
 		<?php endif ; ?>
