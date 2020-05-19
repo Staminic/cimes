@@ -14,18 +14,30 @@ $description = $this->category ? $this->category->description: $this->introText;
 $bootstrapHelper = EventbookingHelperBootstrap::getInstance();
 $clearfixClass   = $bootstrapHelper->getClassMapping('clearfix');
 ?>
+<div id="eb-category-page-columns" class="eb-container">
+	<?php
+	if ($this->params->get('show_page_heading'))
+	{
+	?>
+		<div class="hero">
+			<div class="item-img-fullwidth" style="background-image: url('<?php echo $rootUri . '/' . $this->category->image; ?>');">
+			<div class="overlay"></div>
+				<div class="container d-flex flex-column">					
+						<div class="page-header ">
+								<h1 itemprop="headline"><?php echo $this->escape($this->params->get('page_heading'));?></h1> 								                							
+						</div>
 
-<div id="eb-category-page-columns">
+						<div>
+							<?php echo JHtml::_('content.prepare', '{loadposition hero-menu}'); ?>
+						</div>
+					</div>
+			</div>
+		</div>
+	<?php
+	} ?>
+
 	<div class="container">
-
 		<?php
-		if ($this->params->get('show_page_heading'))
-		{
-		?>
-			<h1 class="eb-page-heading"><?php echo $this->escape($this->params->get('page_heading'));?></h1>
-		<?php
-		}
-
 		if ($description)
 		{
 		?>
@@ -98,25 +110,25 @@ $clearfixClass   = $bootstrapHelper->getClassMapping('clearfix');
 			</div>
 		<?php
 		}
+
+		JFactory::getDocument()->addScriptDeclaration('
+					function cancelRegistration(registrantId)
+					{
+							var form = document.adminForm ;
+			
+							if (confirm("' . JText::_('EB_CANCEL_REGISTRATION_CONFIRM') . '"))
+							{
+									form.task.value = "registrant.cancel" ;
+									form.id.value = registrantId ;
+									form.submit() ;
+							}
+					}
+			');
 		?>
 
 		<form method="post" name="adminForm" id="adminForm" action="<?php echo JRoute::_('index.php?option=com_eventbooking&view=category&layout=columns&id='.$this->categoryId.'&Itemid='.$this->Itemid); ?>">
 			<input type="hidden" name="id" value="0" />
 			<input type="hidden" name="task" value="" />
-			<script type="text/javascript">
-				function cancelRegistration(registrantId)
-				{
-					var form = document.adminForm ;
-
-					if (confirm("<?php echo JText::_('EB_CANCEL_REGISTRATION_CONFIRM'); ?>"))
-					{
-						form.task.value = 'registrant.cancel' ;
-						form.id.value = registrantId ;
-						form.submit() ;
-					}
-				}
-			</script>
 		</form>
-
-	</div>
+	<div>
 </div>
