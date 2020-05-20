@@ -919,6 +919,7 @@ section.events {
 .card {
   &.training {
     border: none;
+    color: #000000;
 
     .card-img-top {
       position: relative;
@@ -1080,6 +1081,38 @@ section.events {
     > a {
       &:hover {
         text-decoration: none;
+      }
+    }
+  }
+}
+
+.reference {
+  .index {
+    position: sticky;
+    top: $spacer;
+  }
+
+  .rl_quickindex {
+    .index-header {
+      margin-top: 0;
+      font-weight: $font-weight-normal;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .index-item {
+      margin-bottom: $spacer;
+    }
+
+    .index-link {
+      color: $white;
+    }
+  }
+
+  .content {
+    h2 {
+      &:first-child {
+        margin-top: 0;
       }
     }
   }

@@ -11846,6 +11846,7 @@ section.events .card-event-catid-3 .eb-event-date-time {
 
 .card.training {
   border: none;
+  color: #000000;
 }
 .card.training .card-img-top {
   position: relative;
@@ -11966,6 +11967,26 @@ section.events .card-event-catid-3 .eb-event-date-time {
   text-decoration: none;
 }
 
+.reference .index {
+  position: sticky;
+  top: 1rem;
+}
+.reference .rl_quickindex .index-header {
+  margin-top: 0;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+}
+.reference .rl_quickindex .index-item {
+  margin-bottom: 1rem;
+}
+.reference .rl_quickindex .index-link {
+  color: #fff;
+}
+.reference .content h2:first-child {
+  margin-top: 0;
+}
+
 @media (min-width: 768px) {
   .hero .container {
     padding: 75px 90px;
@@ -11979,10 +12000,10 @@ section.events .card-event-catid-3 .eb-event-date-time {
   }
 }
 @media (min-width: 992px) {
-  .navbar-nav .nav-item {
+  .navbar-nav > .nav-item {
     margin-right: 1.5rem;
   }
-  .navbar-nav .nav-item:last-child {
+  .navbar-nav > .nav-item:last-child {
     margin-right: 0;
   }
   .navbar-nav > .nav-item:first-child {

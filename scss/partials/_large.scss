@@ -2,7 +2,7 @@
 
 @include media-breakpoint-up(lg) {
   .navbar-nav {
-    .nav-item {
+    > .nav-item {
       margin-right: 1.5rem;
 
       &:last-child {
@@ -10,9 +10,9 @@
       }
     }
 
-    >.nav-item {
+    > .nav-item {
       &:first-child {
-        margin-left: -.5rem;
+        margin-left: -0.5rem;
       }
     }
 
