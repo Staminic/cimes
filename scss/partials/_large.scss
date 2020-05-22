@@ -14,12 +14,24 @@
       &:first-child {
         margin-left: -0.5rem;
       }
+
+      .nav-link {
+        padding-right: 0.325rem !important;
+        padding-left: 0.325rem !important;
+        font-weight: $font-weight-bold;
+      }
     }
 
     .item-140 {
       .nav-link {
         background-color: $primary;
       }
+    }
+  }
+
+  .dropdown-menu {
+    .nav-link {
+      font-weight: $font-weight-medium !important;
     }
   }
 

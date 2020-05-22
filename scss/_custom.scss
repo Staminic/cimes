@@ -962,11 +962,6 @@ section.events {
 
 .isotope_item {
   text-align: center;
-
-  .intro-img {
-    img {
-    }
-  }
 }
 
 .isotope_button-group {
@@ -1114,6 +1109,37 @@ section.events {
       &:first-child {
         margin-top: 0;
       }
+    }
+  }
+}
+
+a.droppicssingleimage {
+  color: transparent;
+
+  &.showcaption {
+    span {
+      color: #000000;
+      font-weight: $font-weight-normal;
+
+      &::before {
+        content: "\f002";
+        margin-right: 0.5rem;
+        font-family: FontAwesome;
+      }
+    }
+  }
+
+  img {
+    border: none;
+  }
+}
+
+.droppicssingleimage {
+  &[style*="auto"] {
+    img {
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
     }
   }
 }
