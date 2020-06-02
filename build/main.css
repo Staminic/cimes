@@ -12073,6 +12073,15 @@ a.droppicssingleimage img {
   .cards.cols-5 .card {
     width: calc(100% / 5 - 15px);
   }
+
+  .text-columns_two {
+    column-count: 2;
+    column-gap: 2rem;
+    text-align: justify;
+    -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+            hyphens: auto;
+  }
 }
 @media (min-width: 1200px) {
   .navbar-collapse .container {
