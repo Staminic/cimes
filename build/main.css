@@ -11236,6 +11236,10 @@ p[style*=justify] {
   margin-right: -50vw;
 }
 
+.item-page {
+  overflow-x: hidden;
+}
+
 .btn-outline-black {
   color: #000;
   background-color: #fff;
@@ -12008,6 +12012,27 @@ a.droppicssingleimage img {
   display: block;
   margin-right: auto;
   margin-left: auto;
+}
+
+.fabrikMainError {
+  background-color: #f46b06;
+  color: #fff;
+}
+.fabrikMainError .close {
+  right: 5px;
+}
+
+.rl_tabs > .tab-content > .tab-pane#info-request {
+  overflow-x: hidden;
+}
+
+[class*=___consent] > label.fabrikLabel.fabrikTip {
+  display: none !important;
+}
+[class*=___consent] .fabrikinput + span {
+  margin-left: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 
 @media (min-width: 768px) {

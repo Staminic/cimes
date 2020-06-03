@@ -65,6 +65,10 @@ p[style*="justify"] {
   margin-right: -50vw;
 }
 
+.item-page {
+  overflow-x: hidden;
+}
+
 // CUSTOM
 
 .btn-outline-black {
@@ -1140,6 +1144,33 @@ a.droppicssingleimage {
       display: block;
       margin-right: auto;
       margin-left: auto;
+    }
+  }
+}
+
+.fabrikMainError {
+  background-color: $primary;
+  color: $white;
+
+  .close {
+    right: 5px;
+  }
+}
+
+.rl_tabs > .tab-content > .tab-pane#info-request {
+  overflow-x: hidden;
+}
+
+[class*="___consent"] {
+  > label.fabrikLabel.fabrikTip {
+    display: none !important;
+  }
+
+  .fabrikinput {
+    + span {
+      margin-left: $spacer * 0.25;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-bold;
     }
   }
 }
