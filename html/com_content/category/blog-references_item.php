@@ -52,7 +52,7 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
 		$link->setVar('return', base64_encode(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language)));
 	endif; 
 ?>
-<a class="card training w-100" href="<?php echo $link; ?>" itemprop="url">
+<a class="card training w-100" href="<?php echo $link; ?>" itemprop="url" style="height: 100%;">
 
 	<?php echo JLayoutHelper::render('joomla.content.intro_image_reference', $this->item); ?>
 
