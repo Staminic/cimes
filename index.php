@@ -8,14 +8,15 @@ include_once JPATH_THEMES.'/'.$this->template.'/logic.php';
   <head>
       <jdoc:include type="head" />
       <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141581902-1"></script>
+      <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141581902-1"></script>
       <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'UA-141581902-1');
         gtag('config', 'AW-1061303413');
-      </script>
+      </script> -->
+
       <?php if ($this->countModules('google-script')) : ?>
         <jdoc:include type="modules" name="google-script" />
       <?php endif; ?>
